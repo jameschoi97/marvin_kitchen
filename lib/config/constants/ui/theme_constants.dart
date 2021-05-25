@@ -25,7 +25,7 @@ extension ThemeExtension on MarvinTheme {
 
   Color get canvasColor {
     if (index == MarvinTheme.normal.index) return Colors.white.withOpacity(0.6);
-    if (index == MarvinTheme.christmas.index) return Colors.green.withOpacity(0.2);
+    if (index == MarvinTheme.christmas.index) return Colors.lightGreen.withOpacity(0.6);
     if (index == MarvinTheme.starWars.index) return Colors.black.withOpacity(0.6);
     return Colors.white;
   }

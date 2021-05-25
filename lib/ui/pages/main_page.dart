@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:marvin_kitchen/ui/widgets/marvin_text.dart';
 
 import '../../config/constants/ui/theme_constants.dart';
+import 'main_page_controller.dart';
 
 enum Menu {
   express,
@@ -32,9 +33,7 @@ class MainPage extends StatelessWidget {
   static final name = '/main';
 
   final _themeController = Get.find<MarvinThemeController>();
-  final _showMessage = false.obs;
-  final _messageVisible = false.obs;
-  final _messageContent = ''.obs;
+  final _controller = Get.find<MainPageController>();
 
   final menu = [
     Menu.express,
@@ -93,93 +92,90 @@ class MainPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Center(
-                child: Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              child: Column(
-                children: [
-                  Obx(() => Container(
-                    height: 200,
-                    child:
-                        Center(
-                          child: AnimatedContainer(
-                              duration: Duration(milliseconds: 200),
-                              curve: Curves.easeOut,
-                              width: _showMessage.value ? 300 : 0,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                border: Border.all(
-                                  color: _themeController
-                                      .currentTheme.value.borderColor,
-                                ),
-                                color: _themeController
-                                    .currentTheme.value.canvasColor,
-                              ),
-                              child: Visibility(
-                                visible: _messageVisible.value ? true : false,
-                                child: Row(
-                                  children: [
-                                    Container(width: 40),
-                                    Expanded(child: Center(child: MarvinText(content: _messageContent.value, style: TextStyle(fontSize: 20)))),
-                                    IconButton(
-                                      onPressed: () => hideMessage(),
-                                      icon: Icon(Icons.close,
-                                          color: Colors.red, size: 15),
-                                    )
-                                  ],
-                                ),
-                              )),
-                        ),
-
-                  )),
-                  Container(
-                    height: 2,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color:
-                              _themeController.currentTheme.value.borderColor,
-                          spreadRadius: 5,
-                          blurRadius: 20, // changes position of shadow
-                        ),
-                      ],
-                    ),
+            flex: 2,
+              child: Center(
+                  child: Obx(
+            () => AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                curve: Curves.easeOut,
+                width: _controller.showMessage.value ? 300 : 0,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  border: Border.all(
+                    color: _themeController.currentTheme.value.borderColor,
                   ),
-                  Expanded(
-                    child: Container(
-                      color: _themeController.currentTheme.value.canvasColor,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: menu
-                              .map((menu) => Container(
-                                    child: MarvinText(
-                                      content: menu.name,
-                                      style: TextStyle(fontSize: 25),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ))
-                              .toList()),
-                    ),
+                  color: _themeController.currentTheme.value.canvasColor,
+                ),
+                child: AnimatedOpacity(
+                  opacity: _controller.messageVisible.value ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 150),
+                  child: Row(
+                    children: [
+                      Container(width: 40),
+                      Expanded(
+                          child: Center(
+                              child: MarvinText(
+                                  content: _controller.messageContent.value,
+                                  style: TextStyle(fontSize: 20)))),
+                      IconButton(
+                        onPressed: () => hideMessage(),
+                        icon: Icon(Icons.close, color: Colors.red, size: 15),
+                      )
+                    ],
                   ),
-                  Container(
-                    height: 2,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color:
-                              _themeController.currentTheme.value.borderColor,
-                          spreadRadius: 5,
-                          blurRadius: 20, // changes position of shadow
-                        ),
-                      ],
-                    ),
+                )),
+          ))),
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                Container(
+                  height: 2,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: _themeController.currentTheme.value.borderColor,
+                        spreadRadius: 5,
+                        blurRadius: 20, // changes position of shadow
+                      ),
+                    ],
                   ),
-                  Container(height: 200),
-                ],
-              ),
-            )),
+                ),
+                Expanded(
+                  child: Container(
+                    color: _themeController.currentTheme.value.canvasColor,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: menu
+                            .map((menu) => Container(
+                                  child: MarvinText(
+                                    content: menu.name,
+                                    style: TextStyle(fontSize: 25),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ))
+                            .toList()),
+                  ),
+                ),
+                Container(
+                  height: 2,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: _themeController.currentTheme.value.borderColor,
+                        spreadRadius: 5,
+                        blurRadius: 20, // changes position of shadow
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(),
           ),
           Container(
             decoration: BoxDecoration(
@@ -195,11 +191,11 @@ class MainPage extends StatelessWidget {
             child: Row(
               children: [
                 TextButton(
-                  onPressed: () => showMessage('Update completed'),
+                    onPressed: () => showMessage('Update completed'),
                     child: Icon(
-                  Icons.favorite_outline,
-                  size: 50,
-                )),
+                      Icons.favorite_outline,
+                      size: 50,
+                    )),
                 Expanded(
                   child: Center(
                     child: TextButton(
@@ -231,16 +227,25 @@ class MainPage extends StatelessWidget {
 
   void changeTheme(MarvinTheme theme) {
     _themeController.currentTheme.value = theme;
+    showMessage('Theme updated');
   }
 
-  void showMessage(String message){
-    _showMessage.value = true;
-    _messageVisible.value = true;
-    _messageContent.value = message;
+  void showMessage(String message) async {
+    _controller.semaphore++;
+    final id = _controller.semaphore;
+    _controller.showMessage.value = true;
+    await Future.delayed(Duration(milliseconds: 300));
+    _controller.messageContent.value = message;
+    _controller.messageVisible.value = true;
+    await Future.delayed(Duration(seconds: 3));
+    if (id == _controller.semaphore){
+      hideMessage();
+    }
   }
 
-  void hideMessage(){
-    _messageVisible.value = false;
-    _showMessage.value = false;
+  void hideMessage() async {
+    _controller.messageVisible.value = false;
+    await Future.delayed(Duration(milliseconds: 100));
+    _controller.showMessage.value = false;
   }
 }
