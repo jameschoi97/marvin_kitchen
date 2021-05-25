@@ -43,95 +43,143 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage()
-            )
-          ),
-          child: Column(
-      children: [
-          Row(
-            children: [
-              Icon(
-                Icons.lightbulb_outlined,
-                size: 50,
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.phone_android, size: 30),
-                    Container(
-                      child: Text(
-                        DateTime.now().format('jm'),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                    ),
-                    Icon(Icons.wifi, size: 30),
-                  ],
+      decoration: _themeController.getDecoration(),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(
+                color:
+                Colors.white,
+                spreadRadius: 20,
+                blurRadius: 40,
+                offset: Offset(0, -10)// changes position of shadow
+              )],
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.lightbulb_outlined,
+                  size: 50,
                 ),
-              ),
-              Icon(
-                Icons.settings_outlined,
-                size: 50,
-              ),
-            ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.phone_android, size: 30),
+                      Container(
+                        child: Text(
+                          DateTime.now().format('jm'),
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                      ),
+                      Icon(Icons.wifi, size: 30),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.settings_outlined,
+                  size: 50,
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: Center(
-              child: Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(color: _themeController.currentTheme.value.primaryColor),
-                      bottom: BorderSide(color: _themeController.currentTheme.value.primaryColor),
+                child: Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: Column(
+                children: [
+                  Container(
+                    height: 2,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              _themeController.currentTheme.value.borderColor,
+                          spreadRadius: 5,
+                          blurRadius: 20, // changes position of shadow
+                        ),
+                      ],
                     ),
                   ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: menu
-                          .map((menu) => Container(
-                                child: Text(
-                                  menu.name,
-                                  style: TextStyle(fontSize: 25),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))
-                          .toList())),
-            ),
-          ),
-          Row(
-            children: [
-              Icon(
-                Icons.favorite_outline,
-                size: 50,
+                  Expanded(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      color: _themeController.currentTheme.value.canvasColor,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: menu
+                              .map((menu) => Container(
+                                    child: Text(
+                                      menu.name,
+                                      style: TextStyle(fontSize: 25),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ))
+                              .toList()),
+                    ),
+                  ),
+                  Container(
+                    height: 2,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              _themeController.currentTheme.value.borderColor,
+                          spreadRadius: 5,
+                          blurRadius: 20, // changes position of shadow
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Center(
-                  child: TextButton(
-                    onPressed: () {
-                      _themeController.currentTheme.value =
-                          _themeController.currentTheme.value ==
-                                  MarvinTheme.normal
-                              ? MarvinTheme.christmas
-                              : MarvinTheme.normal;
-                    },
-                    child: Icon(
-                      Icons.lock_outlined,
-                      size: 50,
+            )),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(
+                  color:
+                  Colors.white,
+                  spreadRadius: 20,
+                  blurRadius: 40,
+                  offset: Offset(0, 10)// changes position of shadow
+              )],
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.favorite_outline,
+                  size: 50,
+                ),
+                Expanded(
+                  child: Center(
+                    child: TextButton(
+                      onPressed: () {
+                        _themeController.currentTheme.value =
+                            _themeController.currentTheme.value ==
+                                    MarvinTheme.normal
+                                ? MarvinTheme.christmas
+                                : MarvinTheme.normal;
+                      },
+                      child: Icon(
+                        Icons.lock_outlined,
+                        size: 50,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Icon(
-                Icons.timer_outlined,
-                size: 50,
-              ),
-            ],
+                Icon(
+                  Icons.timer_outlined,
+                  size: 50,
+                ),
+              ],
+            ),
           ),
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 }

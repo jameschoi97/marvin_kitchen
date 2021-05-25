@@ -13,9 +13,15 @@ extension ThemeExtension on MarvinTheme {
     return Colors.white;
   }
 
+  Color get borderColor {
+    if (index == MarvinTheme.normal.index) return Colors.black.withOpacity(0.8);
+    if (index == MarvinTheme.christmas.index) return Colors.red.withOpacity(0.4);
+    return Colors.white;
+  }
+
   Color get canvasColor {
-    if (index == MarvinTheme.normal.index) return Colors.white;
-    if (index == MarvinTheme.christmas.index) return Colors.green;
+    if (index == MarvinTheme.normal.index) return Colors.white.withOpacity(0.6);
+    if (index == MarvinTheme.christmas.index) return Colors.green.withOpacity(0.2);
     return Colors.white;
   }
 
@@ -24,7 +30,6 @@ extension ThemeExtension on MarvinTheme {
     if (index == MarvinTheme.christmas.index) return Colors.pinkAccent;
     return Colors.white;
   }
-
 }
 
 class MarvinThemeController extends GetxController {
@@ -32,7 +37,6 @@ class MarvinThemeController extends GetxController {
 
   ThemeData getTheme() {
     return ThemeData(
-        canvasColor: currentTheme.value.canvasColor,
         textTheme: TextTheme(
           headline1:
               TextStyle(color: currentTheme.value.primaryColor, fontSize: 96),
@@ -61,15 +65,29 @@ class MarvinThemeController extends GetxController {
           overline:
               TextStyle(color: currentTheme.value.primaryColor, fontSize: 10),
         ),
-      iconTheme: IconThemeData(
-        color: currentTheme.value.primaryColor,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.all(Colors.transparent),
-          foregroundColor: MaterialStateProperty.all(currentTheme.value.overlayColor)
-        )
-      )
-    );
+        iconTheme: IconThemeData(
+          color: currentTheme.value.primaryColor,
+        ),
+        textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                foregroundColor: MaterialStateProperty.all(
+                    currentTheme.value.overlayColor))));
+  }
+
+  BoxDecoration getDecoration() {
+    if (currentTheme.value == MarvinTheme.normal) {
+      return BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('images/homescreen.jpg'),
+        fit: BoxFit.cover,
+      ));
+    } else {
+      return BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('images/christmas_background.jpeg'),
+        fit: BoxFit.cover,
+      ));
+    }
   }
 }
