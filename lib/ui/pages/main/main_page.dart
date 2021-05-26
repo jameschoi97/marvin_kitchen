@@ -87,7 +87,7 @@ class MainPage extends StatelessWidget {
                       duration: Duration(milliseconds: 150),
                       child: Row(
                         children: [
-                          Container(width: MediaQuery.of(context).size.width / 8),
+                          Container(width: MediaQuery.of(context).size.width / 30 + 40),
                           Expanded(
                               child: Center(
                                   child: MarvinText(

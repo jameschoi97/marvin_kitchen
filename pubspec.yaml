@@ -26,6 +26,7 @@ dependencies:
   get: ^4.1.1
   dart_date: ^1.1.0
   bordered_text: ^2.0.0
+  lottie: ^1.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,6 +44,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/fireworks/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

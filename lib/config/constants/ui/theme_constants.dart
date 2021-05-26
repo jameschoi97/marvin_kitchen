@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 enum MarvinTheme {
   normal,
@@ -41,6 +42,13 @@ extension ThemeExtension on MarvinTheme {
     if (index == MarvinTheme.christmas.index) return Colors.white;
     if (index == MarvinTheme.starWars.index) return Colors.black.withOpacity(0.7);
     return Colors.white;
+  }
+
+  String get fireworkPath {
+    if (index == MarvinTheme.normal.index) return 'assets/fireworks/normal_fireworks.json';
+    if (index == MarvinTheme.christmas.index) return 'assets/fireworks/christmas_fireworks.json';
+    if (index == MarvinTheme.starWars.index) return 'assets/fireworks/starwars_fireworks.json';
+    return '';
   }
 }
 
@@ -91,19 +99,19 @@ class MarvinThemeController extends GetxController {
     if (currentTheme.value == MarvinTheme.normal) {
       return BoxDecoration(
           image: DecorationImage(
-        image: AssetImage('images/homescreen.jpg'),
+        image: AssetImage('assets/images/homescreen.jpg'),
         fit: BoxFit.cover,
       ));
     } else if (currentTheme.value == MarvinTheme.christmas){
       return BoxDecoration(
           image: DecorationImage(
-        image: AssetImage('images/christmas_background.jpeg'),
+        image: AssetImage('assets/images/christmas_background.jpeg'),
         fit: BoxFit.cover,
       ));
     } else {
       return BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/starwars_background.jpeg'),
+          image: AssetImage('assets/images/starwars_background.jpeg'),
           fit: BoxFit.cover,
         )
       );
