@@ -44,6 +44,20 @@ extension ThemeExtension on MarvinTheme {
     return Colors.white;
   }
 
+  Color get notificationColor {
+    if (index == MarvinTheme.normal.index) return Colors.red;
+    if (index == MarvinTheme.christmas.index) return Colors.red;
+    if (index == MarvinTheme.starWars.index) return Colors.yellow;
+    return Colors.white;
+  }
+
+  Color get notificationTextColor {
+    if (index == MarvinTheme.normal.index) return Colors.white;
+    if (index == MarvinTheme.christmas.index) return Colors.white;
+    if (index == MarvinTheme.starWars.index) return Colors.black;
+    return Colors.white;
+  }
+
   String get fireworkPath {
     if (index == MarvinTheme.normal.index) return 'assets/fireworks/normal_fireworks.json';
     if (index == MarvinTheme.christmas.index) return 'assets/fireworks/christmas_fireworks.json';

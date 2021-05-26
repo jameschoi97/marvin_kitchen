@@ -17,17 +17,17 @@ class MarvinText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Container(
-      child: getText(text),
+      child: getText(text, context),
     ));
   }
 
-  Widget getText(Text text) {
+  Widget getText(Text text, BuildContext context) {
     final theme = _themeController.currentTheme.value;
     if (theme == MarvinTheme.normal) {
       return text;
     } else if (theme == MarvinTheme.christmas) {
       return BorderedText(
-        strokeWidth: 2.0,
+        strokeWidth: MediaQuery.of(context).size.width / 400,
           strokeColor: MarvinTheme.christmas.primaryColor,
           child: text,
       );

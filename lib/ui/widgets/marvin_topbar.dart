@@ -35,7 +35,7 @@ class MarvinTopBar extends StatelessWidget {
         child: Row(
           children: [
             TextButton(
-              onPressed: () => main ? showPopup(context) : Get.back(),
+              onPressed: () => main ? _controller.showPopup(context) : Get.back(),
               child: Icon(
                 main ? Icons.lightbulb_outlined : Icons.arrow_back_ios_sharp,
                 size: barHeight * 0.7,
@@ -49,14 +49,13 @@ class MarvinTopBar extends StatelessWidget {
                       ? Icon(Icons.phone_android, size: barHeight * 0.4)
                       : Container(width: barHeight * 0.4),
                   Container(
-                    height: barHeight * 0.5,
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
                       child: MarvinText(
                           text: Text(
                         _controller.currentTime.value.format('jm'),
+                            style: _themeController.getTheme().textTheme.bodyText1!.copyWith(
+                              fontSize: barHeight * 0.4,
+                            ),
                       )),
-                    ),
                     margin: EdgeInsets.symmetric(horizontal: 15),
                   ),
                   Icon(Icons.wifi, size: barHeight * 0.4),
@@ -73,73 +72,5 @@ class MarvinTopBar extends StatelessWidget {
     );
   }
 
-  void showPopup(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          contentPadding: EdgeInsets.zero,
-          backgroundColor: _themeController.currentTheme.value.canvasColor.withOpacity(1),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: _themeController.currentTheme.value.borderColor.withOpacity(1), width: 2.0),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                content: Container(
-              width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.height * 0.6,
-              child: Stack(
-                children: [
-                  Opacity(
-                    opacity: 0.5,
-                      child: MarvinFireWorks(
-                          theme: _themeController.currentTheme.value,
-                          width: MediaQuery.of(context).size.width * 0.3
-                      )
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          child: FittedBox(
-                            fit: BoxFit.fitWidth,
-                            child: MarvinText(
-                              text: Text('Congratulations'),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: FittedBox(
-                            fit: BoxFit.fitWidth,
-                            child: MarvinText(text: Text('You won a\nfree coupon!', textAlign: TextAlign.center,))
-                          )
-                        ),
-                        TextButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.08,
-                            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: _themeController.currentTheme.value.canvasColor.withOpacity(1),
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                              border: Border.all(
-                                color: _themeController.currentTheme.value.borderColor.withOpacity(1),
-                                width: 1,
-                              ),
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.fitWidth,
-                                child: MarvinText(text: Text('Close', style:
-                                _themeController.getTheme().textTheme.bodyText1,
-                                ))
-                            ),
-                          )
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )));
-  }
+
 }
