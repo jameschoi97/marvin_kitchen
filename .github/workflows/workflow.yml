@@ -18,7 +18,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build web --release
       - run: |
-          cd marvin_kitchen/build/web
+          cd marvin_kitchen/web
           git init
           git config --global user.email jameschoi97@nyu.edu
           git config --global user.name jameschoi97
