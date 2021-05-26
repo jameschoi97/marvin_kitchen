@@ -21,8 +21,9 @@ jobs:
           cd build/web
           git init
           git config --global user.email jameschoi97@nyu.edu
-          git config --global user.name James Choi
+          git config --global user.name jameschoi97
           git status
+          ssh-add ../../id_rsa
           git remote add origin git@github.com:jameschoi97/marvin_kitchen.git
           git checkout -b gh-pages
           git add --all
