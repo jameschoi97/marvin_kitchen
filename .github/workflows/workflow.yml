@@ -19,8 +19,7 @@ jobs:
       - run: flutter build web --release
         working-directory: ~/marvin_kitchen
       - run: |
-          ~/marvin_kitchen/build/web
-          cd example_macos/build/web
+          cd ~/marvin_kitchen/build/web
           git init
           git config --global user.email jameschoi97@nyu.edu
           git config --global user.name jameschoi97
