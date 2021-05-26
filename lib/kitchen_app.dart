@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
-import 'package:marvin_kitchen/ui/pages/main_page.dart';
+import 'package:marvin_kitchen/ui/pages/main/main_page.dart';
+import 'package:marvin_kitchen/ui/pages/microwave/microwave_page.dart';
+import 'package:marvin_kitchen/ui/pages/recipes/recipes_page.dart';
 
 class KitchenApp extends StatelessWidget {
   final _themeController = Get.find<MarvinThemeController>();
@@ -16,6 +18,20 @@ class KitchenApp extends StatelessWidget {
       routes: {
         MainPage.name: (_) => MainPage(),
       },
+      getPages: [
+        GetPage(
+          name: MainPage.name,
+          page: () => MainPage(),
+        ),
+        GetPage(
+          name: MicrowavePage.name,
+          page: () => MicrowavePage(),
+        ),
+        GetPage(
+          name: RecipesPage.name,
+          page: () => RecipesPage(),
+        ),
+      ],
     ));
   }
 }

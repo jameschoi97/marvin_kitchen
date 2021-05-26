@@ -1,0 +1,33 @@
+name: Flutter Web
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build Web
+    env:
+      my_secret: $
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      - run: flutter build web --release
+        ~/marvin_kitchen/lib/main.dart
+        working-directory: ./example_macos
+      - run: |
+          ~/marvin_kitchen/lib/main.dart/build/web
+          cd example_macos/build/web
+          git init
+          git config --global user.email jameschoi97@nyu.edu
+          git config --global user.name jameschoi97
+          git status
+          git remote add origin https://github.com/jameschoi97/marvin_kitchen.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f

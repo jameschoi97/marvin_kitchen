@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:bordered_text/bordered_text.dart';
 
 enum MarvinTheme {
   normal,
@@ -16,10 +15,17 @@ extension ThemeExtension on MarvinTheme {
     return Colors.white;
   }
 
+  Color get textColor {
+    if (index == MarvinTheme.normal.index) return Colors.black;
+    if (index == MarvinTheme.christmas.index) return Colors.white;
+    if (index == MarvinTheme.starWars.index) return Colors.black;
+    return Colors.white;
+  }
+
   Color get borderColor {
     if (index == MarvinTheme.normal.index) return Colors.black.withOpacity(0.8);
     if (index == MarvinTheme.christmas.index) return Colors.red.withOpacity(0.4);
-    if (index == MarvinTheme.starWars.index) return Colors.yellow.withOpacity(0.2);
+    if (index == MarvinTheme.starWars.index) return Colors.yellowAccent.withOpacity(0.2);
     return Colors.white;
   }
 
@@ -45,31 +51,31 @@ class MarvinThemeController extends GetxController {
     return ThemeData(
         textTheme: TextTheme(
           headline1:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 96),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 96),
           headline2:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 60),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 60),
           headline3:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 48),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 48),
           headline4:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 34),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 34),
           headline5:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 24),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 24),
           headline6:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 20),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 20),
           subtitle1:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 16),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 16),
           subtitle2:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 14),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 14),
           bodyText1:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 16),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 16),
           bodyText2:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 14),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 14),
           button:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 14),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 14),
           caption:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 12),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 12),
           overline:
-              TextStyle(color: currentTheme.value.primaryColor, fontSize: 10),
+              TextStyle(color: currentTheme.value.textColor, fontSize: 10),
         ),
         iconTheme: IconThemeData(
           color: currentTheme.value.primaryColor,
@@ -103,4 +109,6 @@ class MarvinThemeController extends GetxController {
       );
     }
   }
+
+
 }
