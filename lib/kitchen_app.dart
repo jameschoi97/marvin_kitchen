@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
 import 'package:marvin_kitchen/ui/pages/main/main_page.dart';
 import 'package:marvin_kitchen/ui/pages/microwave/microwave_page.dart';
+import 'package:marvin_kitchen/ui/pages/recipes/recipes_bindings.dart';
 import 'package:marvin_kitchen/ui/pages/recipes/recipes_page.dart';
 
 class KitchenApp extends StatelessWidget {
@@ -30,6 +31,7 @@ class KitchenApp extends StatelessWidget {
         GetPage(
           name: RecipesPage.name,
           page: () => RecipesPage(),
+          binding: RecipesBindings(),
         ),
       ],
     ));
