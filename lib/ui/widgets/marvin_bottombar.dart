@@ -14,6 +14,7 @@ class MarvinBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final barHeight = MediaQuery.of(context).size.height * 0.1;
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -31,7 +32,7 @@ class MarvinBottomBar extends StatelessWidget {
               onPressed: () => _controller.showMessage('Update completed'),
               child: Icon(
                 Icons.favorite_outline,
-                size: 80,
+                size: barHeight * 0.7,
               )) : Container(),
           Expanded(
             child: main ? Center(
@@ -42,7 +43,7 @@ class MarvinBottomBar extends StatelessWidget {
                     : _controller.changeTheme(MarvinTheme.normal),
                 child: Icon(
                   Icons.lock_outlined,
-                  size: 80,
+                  size: barHeight * 0.7,
                 ),
               ),
             ) : Container(),
@@ -51,7 +52,7 @@ class MarvinBottomBar extends StatelessWidget {
             onPressed: () => _controller.changeTheme(MarvinTheme.starWars),
             child: Icon(
               Icons.timer_outlined,
-              size: 80,
+              size: barHeight * 0.7,
             ),
           ),
         ],

@@ -18,6 +18,7 @@ class MarvinTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final barHeight = MediaQuery.of(context).size.height * 0.1;
     return Obx(
       () => Container(
         decoration: BoxDecoration(
@@ -36,7 +37,7 @@ class MarvinTopBar extends StatelessWidget {
               onPressed: main ? null : () => Get.back(),
               child: Icon(
                 main ? Icons.lightbulb_outlined : Icons.arrow_back_ios_sharp,
-                size: 80,
+                size: barHeight * 0.7,
               ),
             ),
             Expanded(
@@ -44,21 +45,25 @@ class MarvinTopBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   main
-                      ? Icon(Icons.phone_android, size: 60)
-                      : Container(width: 50),
+                      ? Icon(Icons.phone_android, size: barHeight * 0.4)
+                      : Container(width: barHeight * 0.4),
                   Container(
-                    child: MarvinText(
-                        text: Text(_controller.currentTime.value.format('jm'),
-                            style: TextStyle(fontSize: 40))),
+                    height: barHeight * 0.5,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: MarvinText(
+                          text: Text(_controller.currentTime.value.format('jm'),
+                              )),
+                    ),
                     margin: EdgeInsets.symmetric(horizontal: 15),
                   ),
-                  Icon(Icons.wifi, size: 60),
+                  Icon(Icons.wifi, size: barHeight * 0.4),
                 ],
               ),
             ),
             Icon(
               Icons.settings_outlined,
-              size: 80,
+              size: barHeight * 0.7,
             ),
           ],
         ),

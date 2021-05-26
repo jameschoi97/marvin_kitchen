@@ -49,7 +49,7 @@ class MainPage extends StatelessWidget {
   final _themeController = Get.find<MarvinThemeController>();
   final _controller = Get.find<MainController>();
 
-  final menu = [
+  final menuItems = [
     Menu.express,
     Menu.microwave,
     Menu.oven,
@@ -73,8 +73,8 @@ class MainPage extends StatelessWidget {
                 () => AnimatedContainer(
                     duration: Duration(milliseconds: 500),
                     curve: Curves.easeOut,
-                    width: _controller.messageAppear.value ? 300 : 0,
-                    height: 50,
+                    width: _controller.messageAppear.value ? MediaQuery.of(context).size.width * 0.6 : 0,
+                    height: MediaQuery.of(context).size.height * 0.1,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       border: Border.all(
@@ -87,17 +87,17 @@ class MainPage extends StatelessWidget {
                       duration: Duration(milliseconds: 150),
                       child: Row(
                         children: [
-                          Container(width: 40),
+                          Container(width: MediaQuery.of(context).size.width / 8),
                           Expanded(
                               child: Center(
                                   child: MarvinText(
                                       text: Text(
                                           _controller.messageContent.value,
-                                          style: TextStyle(fontSize: 20))))),
-                          IconButton(
+                                          style: TextStyle(fontSize: MediaQuery.of(context).size.width / 40))))),
+                          TextButton(
                             onPressed: () => _controller.hideMessage(),
-                            icon:
-                                Icon(Icons.close, color: Colors.red, size: 15),
+                            child:
+                                Icon(Icons.close, color: Colors.red, size: MediaQuery.of(context).size.width / 30),
                           )
                         ],
                       ),
@@ -106,16 +106,19 @@ class MainPage extends StatelessWidget {
           Expanded(
               flex: 3,
               child: MarvinCarousel(
-                  children: menu
+                  children: menuItems
                       .map((menu) => Container(
                             child: TextButton(
                               onPressed: () => Get.toNamed(menu.pageName),
                               child: MarvinText(
-                                  text: Text(
-                                menu.name,
-                                style: _themeController.getTheme().textTheme.headline2,
-                                textAlign: TextAlign.center,
-                              )),
+                                    text: Text(
+                                  menu.name,
+                                  style: _themeController.getTheme().textTheme.headline1!.copyWith(
+                                    fontSize: MediaQuery.of(context).size.width / 6 / menuItems.length,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                             ),
                           ))
                       .toList())),
