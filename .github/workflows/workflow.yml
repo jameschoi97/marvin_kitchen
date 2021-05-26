@@ -17,10 +17,9 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter build web --release
-        ~/marvin_kitchen/lib/main.dart
-        working-directory: ./example_macos
+        working-directory: ~/marvin_kitchen
       - run: |
-          ~/marvin_kitchen/lib/main.dart/build/web
+          ~/marvin_kitchen/build/web
           cd example_macos/build/web
           git init
           git config --global user.email jameschoi97@nyu.edu
