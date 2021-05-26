@@ -23,7 +23,7 @@ jobs:
           git config --global user.email jameschoi97@nyu.edu
           git config --global user.name jameschoi97
           git status
-          git remote add origin https://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@github.com/jameschoi97/marvin_kitchen.git
+          git remote add origin ${{secrets.COMMIT_SECRET}}@github.com/jameschoi97/marvin_kitchen.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
