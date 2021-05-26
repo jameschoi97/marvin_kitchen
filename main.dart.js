@@ -51151,9 +51151,9 @@ j=R.a4F(A.cw(s,s,T.ez(r.gm(r)),s,s,s,s,s,s,s,s,16,s,s,s,s,!0,s,s,s,s,s,s),A.cw(s
 k=t.wy
 return X.a9D(s,new T.dJ(T.X8(r.gm(r)),s,s),new T.og(A.a3A(s,s,s,s,s,new V.jY(T.X8(r.gm(r)),k),s,s,new V.jY(C.fB,k),s,s,s,s,s,s,s)),j)},
 qH:function(){var s=null,r=this.db
-if(r.gm(r)===C.j1)return new S.d2(s,X.a3I(C.jI,new L.kk("assets/images/homescreen.jpg")),s,s,s,s,C.V)
-else if(r.gm(r)===C.lU)return new S.d2(s,X.a3I(C.jI,new L.kk("assets/images/christmas_background.jpeg")),s,s,s,s,C.V)
-else return new S.d2(s,X.a3I(C.jI,new L.kk("assets/images/starwars_background.jpeg")),s,s,s,s,C.V)}}
+if(r.gm(r)===C.j1)return new S.d2(s,X.a3I(C.jI,new L.kk("homescreen.jpg")),s,s,s,s,C.V)
+else if(r.gm(r)===C.lU)return new S.d2(s,X.a3I(C.jI,new L.kk("christmas_background.jpeg")),s,s,s,s,C.V)
+else return new S.d2(s,X.a3I(C.jI,new L.kk("starwars_background.jpeg")),s,s,s,s,C.V)}}
 B.zX.prototype={
 L:function(a,b){return new X.ju(new B.QG(this),null)}}
 B.QG.prototype={
