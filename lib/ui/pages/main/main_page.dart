@@ -1,3 +1,128 @@
+/*
+import 'dart:async';
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+
+class MainPage extends StatelessWidget {
+  static final String name = '/main';
+  StreamController<int> selected = StreamController<int>();
+
+  @override
+  Widget build(BuildContext context) {
+    final borderColor = Color(0xFF3BBEC2);
+    final rouletteColor = Color(0xFFDDFBFC);
+    final items = [
+      Container(
+        color: Colors.white,
+        height: double.infinity,
+        width: double.infinity,
+        child: Center(
+          child: Container(
+            height: 150,
+              width: 150,
+              padding: EdgeInsets.only(bottom: 50),
+              child: Image.asset('rullette_1st.png',)
+          ),
+        )
+      ),
+      Container(
+          color: rouletteColor,
+          height: double.infinity,
+          width: double.infinity,
+          child: Center(
+            child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(bottom: 50),
+                child: Image.asset('rullette_2nd.png',)
+            ),
+          )
+      ),
+      Container(
+          color: Colors.white,
+          height: double.infinity,
+          width: double.infinity,
+          child: Center(
+            child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(bottom: 50),
+                child: Image.asset('rullette_3rd.png',)
+            ),
+          )
+      ),
+      Container(
+          color: rouletteColor,
+          height: double.infinity,
+          width: double.infinity,
+          child: Center(
+            child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(bottom: 50),
+                child: Image.asset('rullette_2nd.png',)
+            ),
+          )
+      ),
+      Container(
+          color: Colors.white,
+          height: double.infinity,
+          width: double.infinity,
+          child: Center(
+            child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(bottom: 50),
+                child: Image.asset('rullette_3rd.png',)
+            ),
+          )
+      ),
+      Container(
+          color: rouletteColor,
+          height: double.infinity,
+          width: double.infinity,
+          child: Center(
+            child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(bottom: 50),
+                child: Image.asset('rullette_better_luck.png',)
+            ),
+          )
+      ),
+    ];
+    return
+          Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: borderColor,
+                  shape: BoxShape.circle,
+                ),
+                padding: EdgeInsets.all(20),
+                child: FortuneWheel(
+                  selected: selected.stream,
+                  items:
+                  items.map((item) => FortuneItem(child: Transform.rotate(
+                      angle: pi/2,
+                      child: item
+                  ))).toList()
+                  ,
+
+                ),
+              )
+
+    );
+  }
+
+}
+*/
+
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
@@ -6,6 +131,7 @@ import 'package:marvin_kitchen/ui/pages/microwave/microwave_page.dart';
 import 'package:marvin_kitchen/ui/pages/recipes/recipes_page.dart';
 import 'package:marvin_kitchen/ui/widgets/marvin_bottombar.dart';
 import 'package:marvin_kitchen/ui/widgets/marvin_carousel.dart';
+import 'package:marvin_kitchen/ui/widgets/marvin_notification.dart';
 import 'package:marvin_kitchen/ui/widgets/marvin_text.dart';
 import 'package:marvin_kitchen/ui/widgets/marvin_topbar.dart';
 
@@ -69,58 +195,102 @@ class MainPage extends StatelessWidget {
           Expanded(
               flex: 2,
               child: Center(
-                  child: Obx(
-                () => AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
-                    curve: Curves.easeOut,
-                    width: _controller.messageAppear.value ? MediaQuery.of(context).size.width * 0.6 : 0,
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      border: Border.all(
-                        color: _themeController.currentTheme.value.borderColor,
-                      ),
-                      color: _themeController.currentTheme.value.canvasColor,
-                    ),
-                    child: AnimatedOpacity(
-                      opacity: _controller.messageVisible.value ? 1.0 : 0.0,
-                      duration: Duration(milliseconds: 150),
-                      child: Row(
-                        children: [
-                          Container(width: MediaQuery.of(context).size.width / 30 + 40),
-                          Expanded(
-                              child: Center(
-                                  child: MarvinText(
-                                      text: Text(
-                                          _controller.messageContent.value,
-                                          style: TextStyle(fontSize: MediaQuery.of(context).size.width / 40))))),
-                          TextButton(
-                            onPressed: () => _controller.hideMessage(),
-                            child:
-                                Icon(Icons.close, color: Colors.red, size: MediaQuery.of(context).size.width / 30),
-                          )
-                        ],
-                      ),
-                    )),
-              ))),
+                  child:  MarvinNotification(),
+              )),
           Expanded(
               flex: 3,
               child: MarvinCarousel(
                   children: menuItems
-                      .map((menu) => Container(
-                            child: TextButton(
-                              onPressed: () => Get.toNamed(menu.pageName),
-                              child: MarvinText(
-                                    text: Text(
-                                  menu.name,
-                                  style: _themeController.getTheme().textTheme.headline1!.copyWith(
-                                    fontSize: MediaQuery.of(context).size.width / 6 / menuItems.length,
+                      .map((menu) => Obx( () => Stack(
+                            children: [
+                              Center(
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width / 60,
+                                    vertical:
+                                        MediaQuery.of(context).size.width / 30,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  decoration: _controller.newRecipes.isNotEmpty && menu == Menu.recipes
+                                      ? BoxDecoration(
+                                          border: Border.all(
+                                            color: _themeController.currentTheme
+                                                .value.notificationColor,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                400,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        )
+                                      : null,
+                                  child: TextButton(
+                                    onPressed: () => Get.toNamed(menu.pageName),
+                                    child: MarvinText(
+                                      text: Text(
+                                        menu.name,
+                                        style: _themeController
+                                            .getTheme()
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  6 /
+                                                  menuItems.length,
+                                            ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ))
+                              _controller.newRecipes.isNotEmpty && menu == Menu.recipes
+                                  ? Positioned(
+                                      top: 0,
+                                      bottom:
+                                          MediaQuery.of(context).size.width / 10,
+                                      right: 0,
+                                      left: 0,
+                                      child: Center(
+                                        child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  80,
+                                              vertical: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  100,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: _themeController
+                                                  .currentTheme
+                                                  .value
+                                                  .notificationColor,
+                                            ),
+                                            child: Text(
+                                              'New',
+                                              style: TextStyle(
+                                                color: _themeController
+                                                    .currentTheme
+                                                    .value
+                                                    .notificationTextColor,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    50,
+                                              ),
+                                            )),
+                                      ))
+                                  : Container(),
+                            ],
+                          )))
                       .toList())),
           Expanded(
             flex: 2,

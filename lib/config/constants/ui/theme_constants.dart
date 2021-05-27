@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 enum MarvinTheme {
   normal,
@@ -9,6 +8,13 @@ enum MarvinTheme {
 }
 
 extension ThemeExtension on MarvinTheme {
+  String get name {
+    if (index == MarvinTheme.normal.index) return 'normal';
+    if (index == MarvinTheme.christmas.index) return 'christmas';
+    if (index == MarvinTheme.starWars.index) return 'starWars';
+    return '';
+  }
+
   Color get primaryColor {
     if (index == MarvinTheme.normal.index) return Colors.black;
     if (index == MarvinTheme.christmas.index) return Colors.red;

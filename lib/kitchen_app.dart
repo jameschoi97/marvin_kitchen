@@ -4,6 +4,7 @@ import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
 import 'package:marvin_kitchen/ui/pages/main/main_page.dart';
 import 'package:marvin_kitchen/ui/pages/microwave/microwave_page.dart';
 import 'package:marvin_kitchen/ui/pages/recipes/recipes_page.dart';
+import 'package:marvin_kitchen/ui/pages/timer/timer_page.dart';
 
 class KitchenApp extends StatelessWidget {
   final _themeController = Get.find<MarvinThemeController>();
@@ -30,6 +31,10 @@ class KitchenApp extends StatelessWidget {
         GetPage(
           name: RecipesPage.name,
           page: () => RecipesPage(),
+        ),
+        GetPage(
+          name: TimerPage.name,
+          page: () => TimerPage(),
         ),
       ],
     ));

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
 import 'package:marvin_kitchen/main_controller.dart';
-import 'package:marvin_kitchen/ui/widgets/marvin_fireworks.dart';
+import 'package:http/http.dart' as http;
 
 import 'marvin_text.dart';
 import 'package:dart_date/dart_date.dart';
@@ -35,7 +35,7 @@ class MarvinTopBar extends StatelessWidget {
         child: Row(
           children: [
             TextButton(
-              onPressed: () => main ? _controller.showPopup(context) : Get.back(),
+              onPressed: () => main ? _controller.showPopup() : Get.back(),
               child: Icon(
                 main ? Icons.lightbulb_outlined : Icons.arrow_back_ios_sharp,
                 size: barHeight * 0.7,
@@ -62,9 +62,16 @@ class MarvinTopBar extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
-              Icons.settings_outlined,
-              size: barHeight * 0.7,
+            TextButton(
+              onPressed: () {
+                final currentTheme = _themeController.currentTheme.value.name;
+                var url = Uri.parse('${_controller.serverUrl}/api/api.php?2,0,1,$currentTheme');
+                http.get(url);
+              },
+              child: Icon(
+                Icons.settings_outlined,
+                size: barHeight * 0.7,
+              ),
             ),
           ],
         ),

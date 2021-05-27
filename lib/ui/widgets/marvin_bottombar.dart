@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marvin_kitchen/config/constants/ui/theme_constants.dart';
 import 'package:marvin_kitchen/main_controller.dart';
+import 'package:http/http.dart' as http;
 
 class MarvinBottomBar extends StatelessWidget {
   MarvinBottomBar({this.main = false});
@@ -37,10 +38,16 @@ class MarvinBottomBar extends StatelessWidget {
           Expanded(
             child: main ? Center(
               child: TextButton(
-                onPressed: () => _themeController.currentTheme.value ==
+                onPressed: _themeController.currentTheme.value ==
                     MarvinTheme.normal
-                    ? _controller.changeTheme(MarvinTheme.christmas)
-                    : _controller.changeTheme(MarvinTheme.normal),
+                    ? () {
+                  var url = Uri.parse('${_controller.serverUrl}/api/api.php?2,0,0,christmas');
+                  http.get(url);
+                }
+                    : () {
+                  var url = Uri.parse('${_controller.serverUrl}/api/api.php?2,0,0,normal');
+                  http.get(url);
+                },
                 child: Icon(
                   Icons.lock_outlined,
                   size: barHeight * 0.7,
@@ -49,7 +56,10 @@ class MarvinBottomBar extends StatelessWidget {
             ) : Container(),
           ),
           TextButton(
-            onPressed: () => _controller.changeTheme(MarvinTheme.starWars),
+            onPressed: () {
+              var url = Uri.parse('${_controller.serverUrl}/api/api.php?2,0,0,starWars');
+              http.get(url);
+            },
             child: Icon(
               Icons.timer_outlined,
               size: barHeight * 0.7,
