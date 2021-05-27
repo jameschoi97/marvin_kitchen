@@ -61130,7 +61130,7 @@ P.ae5(P.bd(0,500,0),new L.XA(this))
 this.Nm()},
 A1:function(){var s=0,r=P.ae(t.z),q=this
 var $async$A1=P.a9(function(a,b){if(a===1)return P.ab(b,r)
-while(true)switch(s){case 0:G.rP(P.em("http://192.168.2.126:1000/api/api.php?1",0,null)).bk(0,new L.XB(q),t.P)
+while(true)switch(s){case 0:G.rP(P.em("http://dcc6c877ce2d.ngrok.io/api/api.php?1",0,null)).bk(0,new L.XB(q),t.P)
 return P.ac(null,r)}})
 return P.ad($async$A1,r)},
 jN:function(a){return this.Mo(a)},
@@ -61182,7 +61182,7 @@ L.XA.prototype={
 $1:function(a){return this.a.A1()},
 $S:67}
 L.XB.prototype={
-$1:function(a){var s,r,q,p,o,n="http://192.168.2.126:1000/api/api.php?2,0,0,",m=C.b_.I0(0,B.aAi(J.b1(U.ay7(a.e).c.a,"charset")).d9(0,a.x),null),l=this.a,k=J.av(m),j=k.j(m,"theme")
+$1:function(a){var s,r,q,p,o,n="http://dcc6c877ce2d.ngrok.io/api/api.php?2,0,0,",m=C.b_.I0(0,B.aAi(J.b1(U.ay7(a.e).c.a,"charset")).d9(0,a.x),null),l=this.a,k=J.av(m),j=k.j(m,"theme")
 if(j==null)j=""
 s=l.k1.db
 r=s.gk(s)
@@ -61384,13 +61384,13 @@ Z.XK.prototype={
 $0:function(){return this.a.d.jN("Update completed")},
 $S:0}
 Z.XL.prototype={
-$0:function(){G.rP(P.em("http://192.168.2.126:1000/api/api.php?2,0,0,christmas",0,null))},
+$0:function(){G.rP(P.em("http://dcc6c877ce2d.ngrok.io/api/api.php?2,0,0,christmas",0,null))},
 $S:0}
 Z.XM.prototype={
-$0:function(){G.rP(P.em("http://192.168.2.126:1000/api/api.php?2,0,0,normal",0,null))},
+$0:function(){G.rP(P.em("http://dcc6c877ce2d.ngrok.io/api/api.php?2,0,0,normal",0,null))},
 $S:0}
 Z.XN.prototype={
-$0:function(){G.rP(P.em("http://192.168.2.126:1000/api/api.php?2,0,0,starWars",0,null))},
+$0:function(){G.rP(P.em("http://dcc6c877ce2d.ngrok.io/api/api.php?2,0,0,starWars",0,null))},
 $S:0}
 E.ph.prototype={
 O:function(a,b){var s=null,r=this.e.db,q=t.sq,p=M.b8(s,s,C.n,s,s,new S.cs(s,s,s,s,H.a([new O.fO(5,T.jQ(r.gk(r)),C.i,20)],q),s,C.I),s,2,s,s,s,s,s),o=b.I(t.l).f,n=T.jR(r.gk(r)),m=this.d
@@ -61466,7 +61466,7 @@ return s.c?s.d.Br():Y.ad5($.aO())},
 $S:0}
 U.XT.prototype={
 $0:function(){var s=this.a.e.db
-G.rP(P.em("http://192.168.2.126:1000/api/api.php?2,0,1,"+T.ae2(s.gk(s)),0,null))},
+G.rP(P.em("http://dcc6c877ce2d.ngrok.io/api/api.php?2,0,1,"+T.ae2(s.gk(s)),0,null))},
 $S:0}
 M.Cb.prototype={
 a_l:function(a,b){var s,r=null
